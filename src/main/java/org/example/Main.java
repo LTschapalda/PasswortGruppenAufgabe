@@ -1,10 +1,14 @@
 package org.example;
+import java.security.SecureRandom;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.*;
 
 
 public class Main {
     public static void main(String[] args) {
+
+        System.out.println("\nPasswort Vorschlag: "+generateSecurePassword());
 
         String password;
         String validationMessage;
@@ -86,7 +90,6 @@ public class Main {
         return matcher.find();
     }
 
-
     public static String validateGoodPW(String PW){
         if (checkPasswordLength(PW) &&
                 checkPasswordNumber(PW) &&
@@ -97,5 +100,26 @@ public class Main {
         }else {
             return "Versuchs noch einmal.";
         }
+    }
+    public static String generateSecurePassword(){
+        char[] lowerCase = "qwertzuiopasdfghjklyxcvbnm".toCharArray();
+        char[] upperCase = "QWERTZUIOPASDFGHJKLYCVBNM".toCharArray();
+        char[] digit = "0123456789".toCharArray();
+        char[] symbols = "!$#*&?".toCharArray();
+
+        int length = 10;
+
+        Random random = new SecureRandom();
+        StringBuilder generatedPW = new StringBuilder();
+        for(int i = 0; i < length; i++){
+            generatedPW.append(lowerCase[random.nextInt(lowerCase.length)]);
+        }
+
+        generatedPW.insert(random.nextInt(generatedPW.length()), lowerCase[random.nextInt(lowerCase.length)]);
+        generatedPW.insert(random.nextInt(generatedPW.length()), upperCase[random.nextInt(upperCase.length)]);
+        generatedPW.insert(random.nextInt(generatedPW.length()), digit[random.nextInt(digit.length)]);
+        generatedPW.insert(random.nextInt(generatedPW.length()), symbols[random.nextInt(symbols.length)]);
+
+        return generatedPW.toString();
     }
 }
