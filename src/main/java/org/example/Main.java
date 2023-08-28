@@ -6,13 +6,15 @@ import java.util.regex.*;
 public class Main {
     public static void main(String[] args) {
 
-        //System.out.println(enterPassword());
-        System.out.println(validateGoodPW(enterPassword()));
-
-        if(validateGoodPW(enterPassword()).equals("Versuchs noch einmal.")){
-            System.out.println(validateGoodPW(enterPassword()));
-        }
+        String password;
+        String validationMessage;
+        do {
+            password = enterPassword();
+            validationMessage = validateGoodPW(password);
+            System.out.println(validationMessage);
+        } while (!validationMessage.equals("Gutes Passwort"));
     }
+
     public static String enterPassword(){
         Scanner enterPW = new Scanner(System.in);
         System.out.print("Enter a password: ");
