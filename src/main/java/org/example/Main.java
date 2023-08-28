@@ -17,8 +17,6 @@ public class Main {
         Scanner enterPW = new Scanner(System.in);
         System.out.print("Enter a password: ");
         String pw = enterPW.nextLine();
-        enterPW.close();
-
 
         return pw;
     }
