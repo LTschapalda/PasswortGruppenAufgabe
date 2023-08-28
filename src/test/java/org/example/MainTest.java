@@ -154,4 +154,14 @@ class MainTest {
         String expected = "Versuchs noch einmal.";
         Assertions.assertEquals(expected,actual);
     }
+    @Test
+    void generatedPasswordMeetsAllSecurityStandards(){
+        //GIVEN
+        String PW = Main.generateSecurePassword();
+        //WHEN
+        String actual = Main.validateGoodPW(PW);
+        //THEN
+        String expected = "Gutes Passwort";
+        Assertions.assertEquals(expected,actual);
+    }
 }
